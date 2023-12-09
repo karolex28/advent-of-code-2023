@@ -1,3 +1,5 @@
+#PART 1
+
 #opening and reading file
 file = open("day2-data.txt")
 data = file.readlines()
@@ -47,3 +49,39 @@ for gidx, game in enumerate(lis):
     if gidx+1 not in fal:
         tr.append(gidx+1)
         res += gidx+1
+
+
+        
+#PART 2
+
+#create suitable list
+lis2 = []
+for game in lis:
+    gamel = []
+    for draw in game:
+        for color in draw:
+            gamel.append(color)
+    lis2.append(gamel)
+
+
+#solve
+lmax = []
+res2 = 0
+
+for game in lis2:
+    r = 0
+    g = 0
+    b = 0
+    for cidx, color in enumerate(game):
+        if color[1] == 'red':
+            #print(color[1])
+            if color[0] > r:
+                r = color[0]
+        if color[1] == 'green':
+            if color[0] > g:
+                g = color[0]
+        if color[1] == 'blue':
+            if color[0] > b:
+                b = color[0]
+    lmax.append([r, g, b])
+    res2 += r * g * b
